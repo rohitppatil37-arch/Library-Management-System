@@ -1,0 +1,80 @@
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#0f172a,#020617);
+  color:white;
+}
+
+/* CENTER */
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* GLASS UI */
+.glass{
+  background: rgba(255,255,255,0.05);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  backdrop-filter: blur(10px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.glass.small{ width:300px; }
+
+/* HEADER TEXT */
+h1{ color:#22c55e; }
+.main-title{
+  font-size:45px;
+  font-weight:bold;
+}
+
+/* INPUTS */
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+  background:#1f2937;
+  color:white;
+}
+
+/* BUTTON */
+button{
+  padding:12px 20px;
+  background:#22c55e;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#16a34a;
+}
+
+/* TOPBAR */
+.topbar{
+  background:#111827;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* CONTAINER */
+.container{
+  padding:20px;
+}
+
+/* FORM */
+.form-box{
+  max-width:700px;
+  margin:30px auto;
+  background:#111827;
+  padding:25px;
+  border-radius:15px;
+}
