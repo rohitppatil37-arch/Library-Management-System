@@ -1,77 +1,104 @@
-function goLogin(){
-  window.location.href="login.html";
-}
+const API_URL = "https://script.google.com/macros/s/AKfycbzYdkU17A8AYqB1sCC9fChgFPU4piKBzb5cVCD_qgFRvc9XAAjLjiQaqqcXQRoUh31d/exec";
 
 function login(){
   if(user.value==="admin" && pass.value==="1234"){
-    window.location.href="home.html";
-  }else{
-    alert("Wrong login");
+    localStorage.setItem("login","true");
+    window.location="dashboard.html";
   }
 }
 
 function logout(){
-  window.location.href="index.html";
+  localStorage.removeItem("login");
+  window.location="index.html";
 }
 
 function goForm(){
-  window.location.href="form.html";
+  window.location="form.html";
 }
 
-/* 🔍 SEARCH FULL DETAILS */
-function searchBook(q){
+/* 🔥 SAVE TO GOOGLE SHEET */
+function saveBook(){
 
-  const books = [
-    {
-      sr:"1",
-      name:"मृत्युंजय",
-      author:"शिवाजी सावंत",
-      price:"500",
-      publisher:"ABC",
-      type:"कादंबरी",
-      bookNo:"B101",
-      reader:"राहुल",
-      issueDate:"2026-03-20",
-      returnDate:"",
-      remark:"दिलं आहे - राहुल"
-    }
-  ];
+  const data = {
+    name:name.value,
+    author:author.value,
+    price:price.value,
+    publisher:publisher.value,
+    type:type.value,
+    bookNo:bookNo.value,
+    reader:reader.value,
+    issueDate:issueDate.value,
+    returnDate:returnDate.value,
+    remark:remark.value
+  };
+
+  fetch(API_URL,{
+    method:"POST",
+    body:JSON.stringify(data)
+  })
+  .then(res=>res.text())
+  .then(()=>{
+    alert("Saved Successfully ✅");
+    window.location="dashboard.html";
+  });
+}
+
+/* 🔍 LOAD + SEARCH */
+async function loadBooks(){
+
+  const res = await fetch(API_URL);
+  const books = await res.json();
+
+  window.allBooks = books;
+  displayBooks(books);
+}
+
+function search(q){
+  const filtered = allBooks.filter(b =>
+    b.name.includes(q) ||
+    b.author.includes(q) ||
+    String(b.sr).includes(q)
+  );
+
+  displayBooks(filtered);
+}
+
+function displayBooks(books){
 
   let html="";
+  let issued=0;
 
   books.forEach(b=>{
 
-    if(b.name.includes(q) || b.author.includes(q) || b.sr.includes(q)){
+    let status="available";
 
-      let status = b.returnDate
-        ? "🟢 जमा झाले"
-        : b.reader
-        ? "🔴 दिलं आहे"
-        : "🟢 उपलब्ध";
+    if(b.returnDate) status="returned";
+    else if(b.reader){ status="issued"; issued++; }
 
-      html += `
-      <div class="card">
-        <h3>${b.name}</h3>
-        <p><b>अ.क्र.:</b> ${b.sr}</p>
-        <p><b>लेखक:</b> ${b.author}</p>
-        <p><b>किंमत:</b> ₹${b.price}</p>
-        <p><b>प्रकाशक:</b> ${b.publisher}</p>
-        <p><b>प्रकार:</b> ${b.type}</p>
-        <p><b>क्रमांक:</b> ${b.bookNo}</p>
-        <p><b>वाचक:</b> ${b.reader || "-"}</p>
-        <p><b>घेण्याचा दिनांक:</b> ${b.issueDate || "-"}</p>
-        <p><b>जमा दिनांक:</b> ${b.returnDate || "-"}</p>
-        <p><b>शेरा:</b> ${b.remark}</p>
-        <p><b>Status:</b> ${status}</p>
-      </div>`;
-    }
-
+    html+=`
+    <div class="card">
+      <h3>${b.name}</h3>
+      <span class="status ${status}">${status}</span>
+      <p>अ.क्र.: ${b.sr}</p>
+      <p>लेखक: ${b.author}</p>
+      <p>किंमत: ₹${b.price}</p>
+      <p>प्रकाशक: ${b.publisher}</p>
+      <p>प्रकार: ${b.type}</p>
+      <p>क्रमांक: ${b.bookNo}</p>
+      <p>वाचक: ${b.reader||"-"}</p>
+      <p>घेण्याचा दिनांक: ${b.issueDate||"-"}</p>
+      <p>जमा दिनांक: ${b.returnDate||"-"}</p>
+      <p>शेरा: ${b.remark}</p>
+    </div>`;
   });
 
   document.getElementById("results").innerHTML = html;
+  document.getElementById("total").innerText = books.length;
+  document.getElementById("issued").innerText = issued;
+  document.getElementById("available").innerText = books.length - issued;
 }
 
-/* FORM SUBMIT DEMO */
-function submitForm(){
-  alert("Saved (Demo) ✅");
+/* AUTO LOAD */
+if(window.location.pathname.includes("dashboard")){
+  loadBooks();
 }
