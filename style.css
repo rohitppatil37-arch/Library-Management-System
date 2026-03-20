@@ -1,35 +1,55 @@
-*{box-sizing:border-box;}
-
-body{
+/* RESET */
+*{
+  box-sizing:border-box;
   margin:0;
+  padding:0;
+}
+
+/* 🌲 BACKGROUND */
+body{
   font-family:'Segoe UI', sans-serif;
   color:white;
   background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),
+    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
     url("https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=80");
   background-size:cover;
   background-attachment:fixed;
 }
 
-/* HEADER */
+/* 🔥 OVERLAY DEPTH */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
+  z-index:-1;
+}
+
+/* 🏷️ HEADER */
 .app-header{
   text-align:center;
   padding:12px;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
   border-bottom:2px solid #22c55e;
 }
 
 .app-header h1{
   color:#22c55e;
-  margin:3px;
   font-size:24px;
 }
 
-.app-header h2{margin:2px;font-size:14px;}
-.app-header p{margin:2px;font-size:12px;color:#ccc;}
+.app-header h2{
+  font-size:14px;
+  color:#e5e7eb;
+}
 
-/* LOGIN */
+.app-header p{
+  font-size:12px;
+  color:#aaa;
+}
+
+/* 🔐 LOGIN */
 .center{
   display:flex;
   justify-content:center;
@@ -40,19 +60,20 @@ body{
 .login-card{
   background:rgba(0,0,0,0.7);
   padding:30px;
-  border-radius:15px;
+  border-radius:16px;
   width:90%;
   max-width:350px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.7);
 }
 
-/* CONTAINER */
+/* 📦 CONTAINER */
 .container{
   padding:15px;
   padding-bottom:100px;
 }
 
-/* STATS */
+/* 📊 STATS */
 .stats{
   display:flex;
   gap:10px;
@@ -62,63 +83,122 @@ body{
 .stats div{
   flex:1;
   background:rgba(0,0,0,0.6);
-  padding:15px;
+  padding:14px;
   border-radius:12px;
   text-align:center;
   font-weight:bold;
-  border:1px solid #22c55e;
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
 }
 
-/* SEARCH */
-.search{
-  width:100%;
+/* 🔍 SEARCH */
+.search-box{
+  display:flex;
+  gap:8px;
+  margin-bottom:8px;
+  background:rgba(0,0,0,0.6);
+  padding:8px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.search-box input{
+  flex:1;
   padding:14px;
-  border-radius:12px;
+  border-radius:10px;
   border:none;
-  margin-bottom:15px;
-  background:#111;
+  background:transparent;
   color:white;
   font-size:15px;
 }
 
-/* CARD */
+.search-box button{
+  width:60px;
+  background:#22c55e;
+  color:black;
+  font-size:18px;
+  border-radius:10px;
+}
+
+/* ⚡ SUGGESTIONS */
+.suggestions{
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.9);
+  border-radius:12px;
+  max-height:220px;
+  overflow-y:auto;
+  margin-bottom:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+
+.suggestion-item{
+  padding:12px;
+  border-bottom:1px solid #333;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.suggestion-item:hover{
+  background:#22c55e;
+  color:black;
+  transform:scale(1.02);
+}
+
+/* 📚 CARD */
 .card{
   background:rgba(0,0,0,0.7);
   padding:15px;
-  border-radius:15px;
+  border-radius:16px;
   margin-bottom:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  box-shadow:0 5px 25px rgba(0,0,0,0.7);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
 }
 
 .card h3{
   color:#22c55e;
+  font-size:18px;
+  margin-bottom:6px;
 }
 
-/* STATUS */
+.card p{
+  font-size:14px;
+  color:#e5e7eb;
+  margin:4px 0;
+}
+
+/* 🟢 STATUS */
 .status{
+  display:inline-block;
   padding:5px 10px;
   border-radius:20px;
   font-size:12px;
   font-weight:bold;
+  margin-bottom:5px;
 }
 
 .available{background:#166534;}
 .issued{background:#991b1b;}
 .returned{background:#1e40af;}
 
-/* BUTTON */
+/* 🔘 BUTTON */
 button{
   padding:14px;
   border:none;
   border-radius:12px;
   background:#22c55e;
   color:black;
-  width:100%;
-  font-weight:bold;
   font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  min-height:50px;
 }
 
-/* FORM */
+/* 📋 FORM */
 .form input,.form select,.form textarea{
   width:100%;
   margin:10px 0;
@@ -130,7 +210,7 @@ button{
   font-size:15px;
 }
 
-/* MOBILE NAV */
+/* 📱 BOTTOM NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -145,14 +225,14 @@ button{
 .bottom-nav button{
   background:none;
   color:#22c55e;
-  font-size:16px;
+  font-size:18px;
 }
 
-/* DESKTOP */
+/* 💻 DESKTOP */
 @media(min-width:768px){
 
   .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
   }
 
@@ -167,4 +247,16 @@ button{
   .bottom-nav{
     display:none;
   }
+
+}
+
+/* 💻 GRID SYSTEM */
+@media(min-width:1024px){
+
+  #results{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+
 }
