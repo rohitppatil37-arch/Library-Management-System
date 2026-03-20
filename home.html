@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-main">
 
 <div class="topbar">
   <h2>📚 Library Dashboard</h2>
@@ -16,11 +16,11 @@
 
 <div class="container">
 
-  <input type="text" placeholder="🔍 पुस्तक शोधा..." onkeyup="searchBook(this.value)">
+  <input type="text" class="search" placeholder="🔍 पुस्तक / लेखक / अ.क्र. शोधा..." onkeyup="searchBook(this.value)">
 
   <div id="results"></div>
 
-  <button onclick="goForm()">➕ Add Book</button>
+  <button class="add-btn" onclick="goForm()">➕ नवीन पुस्तक नोंद</button>
 
 </div>
 
