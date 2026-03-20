@@ -2,13 +2,11 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzYdkU17A8AYqB1sCC9fChg
 
 function login(){
   if(user.value==="admin" && pass.value==="1234"){
-    localStorage.setItem("login","true");
     window.location="dashboard.html";
   }
 }
 
 function logout(){
-  localStorage.removeItem("login");
   window.location="index.html";
 }
 
@@ -16,7 +14,6 @@ function goForm(){
   window.location="form.html";
 }
 
-/* 🔥 SAVE TO GOOGLE SHEET */
 function saveBook(){
 
   const data = {
@@ -36,14 +33,9 @@ function saveBook(){
     method:"POST",
     body:JSON.stringify(data)
   })
-  .then(res=>res.text())
-  .then(()=>{
-    alert("Saved Successfully ✅");
-    window.location="dashboard.html";
-  });
+  .then(()=>window.location="dashboard.html");
 }
 
-/* 🔍 LOAD + SEARCH */
 async function loadBooks(){
 
   const res = await fetch(API_URL);
@@ -54,24 +46,19 @@ async function loadBooks(){
 }
 
 function search(q){
-  const filtered = allBooks.filter(b =>
-    b.name.includes(q) ||
-    b.author.includes(q) ||
-    String(b.sr).includes(q)
+  const f = allBooks.filter(b =>
+    b.name.includes(q) || b.author.includes(q) || String(b.sr).includes(q)
   );
-
-  displayBooks(filtered);
+  displayBooks(f);
 }
 
 function displayBooks(books){
 
-  let html="";
-  let issued=0;
+  let html="", issued=0;
 
   books.forEach(b=>{
 
     let status="available";
-
     if(b.returnDate) status="returned";
     else if(b.reader){ status="issued"; issued++; }
 
@@ -98,7 +85,6 @@ function displayBooks(books){
   document.getElementById("available").innerText = books.length - issued;
 }
 
-/* AUTO LOAD */
 if(window.location.pathname.includes("dashboard")){
   loadBooks();
 }
