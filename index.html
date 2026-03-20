@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library System</title>
+<title>Login</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="center bg-main">
+<body>
 
-<div class="glass big">
+<div class="app-header">
   <h2>स्मृती वनराई परिवार, संचलित</h2>
   <h1>कै. विष्णु रामचंद्र खाडे</h1>
-  <h1 class="main-title">अभ्यासिका</h1>
+  <h1>अभ्यासिका</h1>
   <p>रामराई, बावची</p>
-
-  <button onclick="goLogin()">🔐 Login</button>
 </div>
 
-<script src="script.js"></script>
+<div class="center">
+  <div class="login-card">
+    <h2>Login</h2>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
