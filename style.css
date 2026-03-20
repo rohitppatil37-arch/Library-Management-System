@@ -1,11 +1,15 @@
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#0f172a,#020617);
+  font-family:'Segoe UI', sans-serif;
   color:white;
 }
 
-/* CENTER */
+/* 🔥 Background */
+.bg-main{
+  background: linear-gradient(135deg,#020617,#0f172a,#020617);
+}
+
+/* Center */
 .center{
   display:flex;
   justify-content:center;
@@ -13,39 +17,64 @@ body{
   height:100vh;
 }
 
-/* GLASS UI */
+/* Glass Effect */
 .glass{
   background: rgba(255,255,255,0.05);
   padding:40px;
   border-radius:20px;
   text-align:center;
-  backdrop-filter: blur(10px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(15px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
+.glass.big{ width:500px; }
 .glass.small{ width:300px; }
 
-/* HEADER TEXT */
 h1{ color:#22c55e; }
 .main-title{
-  font-size:45px;
-  font-weight:bold;
+  font-size:48px;
 }
 
-/* INPUTS */
-input, select, textarea{
+/* Topbar */
+.topbar{
+  background:#020617;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* Container */
+.container{
+  padding:20px;
+}
+
+/* Search */
+.search{
   width:100%;
-  padding:12px;
-  margin:10px 0;
-  border:none;
+  padding:14px;
   border-radius:10px;
+  border:none;
+  margin-bottom:20px;
   background:#1f2937;
   color:white;
 }
 
-/* BUTTON */
+/* Cards */
+.card{
+  background:#1f2937;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.card h3{
+  color:#22c55e;
+}
+
+/* Button */
 button{
-  padding:12px 20px;
+  padding:12px;
   background:#22c55e;
   border:none;
   border-radius:10px;
@@ -57,24 +86,25 @@ button:hover{
   background:#16a34a;
 }
 
-/* TOPBAR */
-.topbar{
-  background:#111827;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
+.add-btn{
+  margin-top:15px;
 }
 
-/* CONTAINER */
-.container{
-  padding:20px;
-}
-
-/* FORM */
+/* Form */
 .form-box{
   max-width:700px;
   margin:30px auto;
-  background:#111827;
+  background:#020617;
   padding:25px;
   border-radius:15px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  background:#1f2937;
+  color:white;
 }
