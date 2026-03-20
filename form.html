@@ -3,47 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Entry</title>
+<title>Add Book</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-main">
+<body>
 
-<div class="header">
+<div class="app-header">
   <h2>स्मृती वनराई परिवार, संचलित</h2>
   <h1>कै. विष्णु रामचंद्र खाडे</h1>
-  <h1 class="main-title">अभ्यासिका</h1>
+  <h1>अभ्यासिका</h1>
   <p>रामराई, बावची</p>
 </div>
 
-<div class="form-box">
+<div class="container form">
 
-  <input id="name" placeholder="पुस्तकाचे नाव">
-  <input id="author" placeholder="लेखक">
-  <input id="price" placeholder="किंमत">
-  <input id="publisher" placeholder="प्रकाशक">
+<input id="name" placeholder="पुस्तकाचे नाव">
+<input id="author" placeholder="लेखक">
+<input id="price" placeholder="किंमत">
+<input id="publisher" placeholder="प्रकाशक">
 
-  <select id="type">
-    <option>कथासंग्रह</option>
-    <option>कादंबरी</option>
-    <option>प्रवास वर्णन</option>
-    <option>ललित लेख</option>
-    <option>चरित्र / आत्मचरित्र</option>
-    <option>ऐतिहासिक</option>
-    <option>इतर</option>
-  </select>
+<select id="type">
+<option>कथासंग्रह</option>
+<option>कादंबरी</option>
+<option>प्रवास वर्णन</option>
+<option>ललित लेख</option>
+<option>चरित्र / आत्मचरित्र</option>
+<option>ऐतिहासिक</option>
+<option>इतर</option>
+</select>
 
-  <input id="bookNo" placeholder="पुस्तक क्रमांक">
-  <input id="reader" placeholder="वाचक">
-  <input id="issueDate" type="date">
-  <input id="returnDate" type="date">
+<input id="bookNo" placeholder="पुस्तक क्रमांक">
+<input id="reader" placeholder="वाचक">
+<input id="issueDate" type="date">
+<input id="returnDate" type="date">
 
-  <textarea id="remark" placeholder="शेरा"></textarea>
+<textarea id="remark" placeholder="शेरा"></textarea>
 
-  <button onclick="submitForm()">Submit</button>
+<button onclick="saveBook()">Save</button>
 
 </div>
 
-<script src="script.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
