@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-header">
+  <h2>स्मृती वनराई परिवार, संचलित</h2>
+  <h1>कै. विष्णु रामचंद्र खाडे</h1>
+  <h1>अभ्यासिका</h1>
+  <p>रामराई, बावची</p>
+</div>
+
+<div class="container">
+
+  <div class="stats">
+    <div>Total <span id="total"></span></div>
+    <div>Available <span id="available"></span></div>
+    <div>Issued <span id="issued"></span></div>
+  </div>
+
+  <input class="search" placeholder="🔍 पुस्तक / लेखक / अ.क्र." onkeyup="search(this.value)">
+
+  <div id="results"></div>
+
+  <button onclick="goForm()">➕ Add Book</button>
+
+</div>
+
+<div class="bottom-nav">
+  <button onclick="goForm()">➕</button>
+  <button onclick="location.reload()">🏠</button>
+  <button onclick="logout()">🚪</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
