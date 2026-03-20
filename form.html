@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Book</title>
+<title>Book Entry</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-main">
 
 <div class="header">
   <h2>स्मृती वनराई परिवार, संचलित</h2>
@@ -18,12 +18,12 @@
 
 <div class="form-box">
 
-  <input placeholder="पुस्तकाचे नाव">
-  <input placeholder="लेखक">
-  <input placeholder="किंमत">
-  <input placeholder="प्रकाशक">
+  <input id="name" placeholder="पुस्तकाचे नाव">
+  <input id="author" placeholder="लेखक">
+  <input id="price" placeholder="किंमत">
+  <input id="publisher" placeholder="प्रकाशक">
 
-  <select>
+  <select id="type">
     <option>कथासंग्रह</option>
     <option>कादंबरी</option>
     <option>प्रवास वर्णन</option>
@@ -33,15 +33,17 @@
     <option>इतर</option>
   </select>
 
-  <input placeholder="पुस्तक क्रमांक">
-  <input placeholder="वाचक">
-  <input type="date">
+  <input id="bookNo" placeholder="पुस्तक क्रमांक">
+  <input id="reader" placeholder="वाचक">
+  <input id="issueDate" type="date">
+  <input id="returnDate" type="date">
 
-  <textarea placeholder="शेरा"></textarea>
+  <textarea id="remark" placeholder="शेरा"></textarea>
 
-  <button>Submit</button>
+  <button onclick="submitForm()">Submit</button>
 
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
