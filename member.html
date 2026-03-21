@@ -1,0 +1,23 @@
+<body>
+
+<div class="board-header">
+  <h1>अभ्यासिका</h1>
+</div>
+
+<div class="container">
+
+<select id="searchType">
+  <option value="sr">अ.क्र.</option>
+  <option value="name">पुस्तक</option>
+  <option value="author">लेखक</option>
+</select>
+
+<input id="searchInput" placeholder="🔍 शोधा..." onkeyup="showSuggestions()">
+
+<div id="suggestions"></div>
+<div id="results"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
