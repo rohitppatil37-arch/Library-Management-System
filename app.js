@@ -2,7 +2,10 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzYdkU17A8AYqB1sCC9fChg
 
 /* LOGIN */
 function login(){
-  if(user.value==="admin" && pass.value==="1234"){
+  const u = document.getElementById("user").value;
+  const p = document.getElementById("pass").value;
+
+  if(u==="admin" && p==="1234"){
     window.location="form.html";
   }
 }
@@ -12,26 +15,40 @@ function goDashboard(){
   window.location="dashboard.html";
 }
 
+/* 🔥 SAVE BOOK */
 function saveBook(){
 
+  console.log("SAVE CLICKED 🔥");
+
   const data = {
-    name:name.value,
-    author:author.value,
-    price:price.value,
-    publisher:publisher.value,
-    type:type.value,
-    bookNo:bookNo.value,
-    reader:reader.value,
-    issueDate:issueDate.value,
-    returnDate:returnDate.value,
-    remark:remark.value
+    name: document.getElementById("name").value,
+    author: document.getElementById("author").value,
+    price: document.getElementById("price").value,
+    publisher: document.getElementById("publisher").value,
+    type: document.getElementById("type").value,
+    bookNo: document.getElementById("bookNo").value,
+    reader: document.getElementById("reader").value,
+    issueDate: document.getElementById("issueDate").value,
+    returnDate: document.getElementById("returnDate").value,
+    remark: document.getElementById("remark").value
   };
 
   fetch(API_URL,{
     method:"POST",
-    body:JSON.stringify(data)
+    body: JSON.stringify(data),
+    headers:{
+      "Content-Type":"application/json"
+    }
   })
-  .then(()=>alert("Saved ✅"));
+  .then(res => res.json())
+  .then(res => {
+    console.log("RESPONSE:", res);
+    alert("Saved Successfully ✅");
+  })
+  .catch(err => {
+    console.error("ERROR:", err);
+    alert("Error ❌");
+  });
 }
 
 /* LOAD */
