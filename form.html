@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="mr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
 <body>
 
-<div class="app-header">
-  <h2>स्मृती वनराई परिवार, संचलित</h2>
-  <h1>कै. विष्णु रामचंद्र खाडे</h1>
-  <h1>अभ्यासिका</h1>
-  <p>रामराई, बावची</p>
+<div class="board-header">
+  <h1>नवीन पुस्तक नोंद</h1>
 </div>
 
 <div class="form-box">
-
-<h2>📚 पुस्तक नोंद फॉर्म</h2>
 
 <input id="name" placeholder="पुस्तकाचे नाव">
 <input id="author" placeholder="लेखक">
@@ -26,12 +12,8 @@
 <input id="publisher" placeholder="प्रकाशक">
 
 <select id="type">
-<option>कथासंग्रह</option>
 <option>कादंबरी</option>
-<option>प्रवास वर्णन</option>
-<option>ललित लेख</option>
-<option>चरित्र / आत्मचरित्र</option>
-<option>ऐतिहासिक</option>
+<option>कथा</option>
 <option>इतर</option>
 </select>
 
@@ -40,16 +22,11 @@
 <input id="issueDate" type="date">
 <input id="returnDate" type="date">
 
-<textarea id="remark" placeholder="शेरा"></textarea>
+<textarea id="remark"></textarea>
 
-<button type="button" onclick="saveBook()">Submit</button>
-
-<button type="button" onclick="goDashboard()" class="secondary">
-📊 Dashboard पाहा
-</button>
+<button onclick="saveBook()">Submit</button>
 
 </div>
 
 <script src="app.js"></script>
 </body>
-</html>
