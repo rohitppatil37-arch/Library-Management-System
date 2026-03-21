@@ -28,35 +28,51 @@ function selectBook(sr){
 
   let b = allBooks.find(x=>String(x.sr)==sr);
 
-  let status = b.reader ? `दिलेलं: ${b.reader}` : "Available";
+  let status = b.reader 
+    ? `📕 दिलेले: ${b.reader}` 
+    : "📗 उपलब्ध";
 
-  results.innerHTML = `
-  <div class="card">
-    <h3>${b.name}</h3>
-    <p>${b.author}</p>
-    <p>${status}</p>
-    <button onclick="requestBook('${b.sr}')">Request</button>
-  </div>`;
+  document.getElementById("results").innerHTML = `
+    <div class="card">
+      <h3>${b.name}</h3>
+      <p>✍️ लेखक: ${b.author}</p>
+      <p>${status}</p>
+
+      <button onclick="requestBook('${b.sr}')">
+        📩 पुस्तक मागणी करा
+      </button>
+    </div>
+  `;
 }
 
 /* REQUEST */
 function requestBook(sr){
 
+  const member = prompt("तुमचे नाव टाका");
+
+  if(!member){
+    alert("⚠️ कृपया नाव टाका");
+    return;
+  }
+
   let b = allBooks.find(x=>String(x.sr)==sr);
 
   if(b.reader){
-    alert("उपलब्ध नाही ❌");
+    alert("❌ हे पुस्तक सध्या उपलब्ध नाही");
     return;
   }
 
   fetch(API_URL,{
     method:"POST",
-    body:JSON.stringify({action:"request",sr:sr})
+    body: JSON.stringify({
+      action:"request",
+      sr:sr,
+      member:member
+    })
   });
 
-  alert("Request sent ✅");
+  alert("✅ तुमची मागणी नोंदवली आहे");
 }
-
 /* ADMIN REQUEST LOAD */
 async function loadRequests(){
 
@@ -68,23 +84,31 @@ async function loadRequests(){
   data.forEach(r=>{
     html += `
     <div class="card">
-      Request for book ${r.sr}
-      <button onclick="approve('${r.sr}')">Approve</button>
+      📘 <b>${r.name}</b><br>
+      अ.क्र.: ${r.sr}<br>
+      👤 सदस्य: ${r.member}
+
+      <button onclick="approve('${r.sr}','${r.member}')">
+        ✔️ मंजूर करा
+      </button>
     </div>`;
   });
 
-  requests.innerHTML = html;
+  document.getElementById("requests").innerHTML = html;
 }
-
 /* APPROVE */
-function approve(sr){
+function approve(sr, member){
 
   fetch(API_URL,{
     method:"POST",
-    body:JSON.stringify({action:"approve",sr:sr})
+    body: JSON.stringify({
+      action:"approve",
+      sr:sr,
+      member:member
+    })
   });
 
-  alert("Approved ✅");
+  alert("✅ पुस्तक मंजूर केले आहे");
 }
 
 /* SAVE BOOK */
