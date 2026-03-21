@@ -3,33 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>अभ्यासिका</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="login-bg">
+<body>
 
-<!-- HEADER -->
-<div class="app-header">
-  <h2>स्मृती वनराई परिवार, संचलित</h2>
-  <h1>कै. विष्णु रामचंद्र खाडे</h1>
-  <h1>अभ्यासिका</h1>
-  <p>रामराई, बावची</p>
+<div id="welcome" class="welcome">
+  <h1>📚 अभ्यासिका</h1>
 </div>
 
-<div class="login-wrapper">
+<div id="main" class="hidden">
 
-  <div class="login-box">
-    <h2>Login / लॉगिन</h2>
+<div class="board-header">
+  <h1>कै. विष्णु रामचंद्र खाडे अभ्यासिका</h1>
+</div>
 
-    <input id="user" placeholder="Username / वापरकर्ता नाव">
-    <input id="pass" type="password" placeholder="Password / पासवर्ड">
-
-    <button onclick="login()">Login / लॉगिन</button>
-  </div>
+<div class="menu">
+  <button onclick="location.href='member.html'">👤 सदस्य येथे क्लिक करा</button>
+  <button onclick="location.href='admin.html'">🔐 प्रशासक लॉगिन</button>
+</div>
 
 </div>
 
-<script src="app.js"></script>
+<script>
+setTimeout(()=>{
+  welcome.classList.add("fadeOut");
+  setTimeout(()=>{
+    welcome.style.display="none";
+    main.classList.remove("hidden");
+  },500);
+},3000);
+</script>
+
 </body>
 </html>
