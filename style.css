@@ -260,3 +260,92 @@ button{
   }
 
 }
+/* 🔵 LOGIN BACKGROUND */
+.login-bg{
+  background: linear-gradient(135deg,#1877f2,#42a5f5);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* WRAPPER */
+.login-wrapper{
+  display:flex;
+  gap:40px;
+  align-items:center;
+}
+
+/* LEFT SIDE */
+.login-left{
+  color:white;
+  max-width:300px;
+}
+
+.login-left h1{
+  font-size:40px;
+}
+
+.login-left p{
+  font-size:18px;
+}
+
+/* RIGHT BOX */
+.login-box{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  width:320px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  text-align:center;
+}
+
+.login-box h2{
+  margin-bottom:15px;
+}
+
+/* INPUT */
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:14px;
+}
+
+/* BUTTON */
+.login-box button{
+  width:100%;
+  padding:12px;
+  background:#1877f2;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.login-box button:hover{
+  background:#0d65d9;
+}
+
+/* FOOTER */
+.login-footer{
+  margin-top:10px;
+  color:#555;
+}
+
+/* 📱 MOBILE */
+@media(max-width:768px){
+
+  .login-wrapper{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .login-left{
+    display:none;
+  }
+
+}
