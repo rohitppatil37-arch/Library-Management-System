@@ -49,13 +49,12 @@ function selectBook(sr){
 function requestBook(sr){
 
   const member = prompt("तुमचे नाव टाका");
-
   if(!member){
-    alert("⚠️ कृपया नाव टाका");
+    alert("⚠️ कृपया तुमचे नाव टाका");
     return;
   }
 
-  let b = allBooks.find(x=>String(x.sr)==sr);
+  const b = allBooks.find(x => String(x.sr) == sr);
 
   if(b.reader){
     alert("❌ हे पुस्तक सध्या उपलब्ध नाही");
@@ -64,10 +63,12 @@ function requestBook(sr){
 
   fetch(API_URL,{
     method:"POST",
+    headers: { "Content-Type":"application/json" },
     body: JSON.stringify({
       action:"request",
-      sr:sr,
-      member:member
+      sr: sr,
+      name: b.name,      // 👈 book name
+      member: member
     })
   });
 
