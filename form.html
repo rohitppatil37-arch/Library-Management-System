@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Book</title>
+<title>Form</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,7 +16,9 @@
   <p>रामराई, बावची</p>
 </div>
 
-<div class="container form">
+<div class="form-box">
+
+<h2>📚 पुस्तक नोंद फॉर्म</h2>
 
 <input id="name" placeholder="पुस्तकाचे नाव">
 <input id="author" placeholder="लेखक">
@@ -40,7 +42,11 @@
 
 <textarea id="remark" placeholder="शेरा"></textarea>
 
-<button onclick="saveBook()">Save</button>
+<button onclick="saveBook()">Submit</button>
+
+<button onclick="goDashboard()" class="secondary">
+📊 Dashboard पाहा
+</button>
 
 </div>
 
