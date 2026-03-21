@@ -9,7 +9,6 @@
 
 <body>
 
-<!-- 🔥 HEADER -->
 <div class="app-header">
   <h2>स्मृती वनराई परिवार, संचलित</h2>
   <h1>कै. विष्णु रामचंद्र खाडे</h1>
@@ -17,49 +16,18 @@
   <p>रामराई, बावची</p>
 </div>
 
-<!-- 📦 MAIN -->
 <div class="container">
 
-  <!-- 📊 STATS -->
-  <div class="stats">
-    <div>Total <span id="total">0</span></div>
-    <div>Available <span id="available">0</span></div>
-    <div>Issued <span id="issued">0</span></div>
-  </div>
-
-  <!-- 🔍 SEARCH -->
-  <div class="search-box">
-
-    <input 
-      id="searchInput"
-      type="text" 
-      placeholder="🔍 पुस्तक / लेखक / अ.क्र. शोधा..."
-      onkeyup="handleSearchKey(event)"
-    >
-
-    <button onclick="searchFromInput()">🔍</button>
-
-  </div>
-
-  <!-- ⚡ Suggestions -->
-  <div id="suggestions" class="suggestions"></div>
-
-  <!-- 📚 Results -->
-  <div id="results"></div>
-
-  <!-- ➕ Add Button -->
-  <button onclick="goForm()">➕ नवीन पुस्तक नोंद</button>
-
+<div class="search-box">
+  <input id="searchInput" placeholder="🔍 पुस्तक / लेखक / अ.क्र.">
+  <button onclick="search()">🔍</button>
 </div>
 
-<!-- 📱 Bottom Nav -->
-<div class="bottom-nav">
-  <button onclick="goForm()">➕</button>
-  <button onclick="scrollToTop()">🏠</button>
-  <button onclick="logout()">🚪</button>
+<div id="suggestions"></div>
+<div id="results"></div>
+
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
