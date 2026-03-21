@@ -130,7 +130,7 @@ function saveBook(){
     })
   });
 
-  alert("Saved ✅");
+  alert("✅ पुस्तक नोंद यशस्वी झाली");
 }
 
 /* AUTO LOAD */
