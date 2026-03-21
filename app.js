@@ -48,27 +48,34 @@ function selectBook(sr){
 /* REQUEST */
 function requestBook(sr){
 
+  // 👉 member नाव घ्या
   const member = prompt("तुमचे नाव टाका");
+
   if(!member){
     alert("⚠️ कृपया तुमचे नाव टाका");
     return;
   }
 
+  // 👉 selected book शोध
   const b = allBooks.find(x => String(x.sr) == sr);
 
+  // 👉 check availability
   if(b.reader){
     alert("❌ हे पुस्तक सध्या उपलब्ध नाही");
     return;
   }
 
+  // 👉 backend ला data पाठवा
   fetch(API_URL,{
     method:"POST",
-    headers: { "Content-Type":"application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
-      action:"request",
+      action: "request",
       sr: sr,
-      name: b.name,      // 👈 book name
-      member: member
+      name: b.name,      // 🔥 book name
+      member: member     // 🔥 member name
     })
   });
 
