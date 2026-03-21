@@ -7,22 +7,34 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="login-bg">
 
-<div class="app-header">
-  <h2>स्मृती वनराई परिवार, संचलित</h2>
-  <h1>कै. विष्णु रामचंद्र खाडे</h1>
-  <h1>अभ्यासिका</h1>
-  <p>रामराई, बावची</p>
-</div>
+<div class="login-wrapper">
 
-<div class="center">
-  <div class="login-card">
-    <h2>Login</h2>
-    <input id="user" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
+  <!-- LEFT SIDE -->
+  <div class="login-left">
+    <h1>📚 अभ्यासिका</h1>
+    <p>Library Management System</p>
+    <p>ग्रंथालय व्यवस्थापन प्रणाली</p>
   </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="login-box">
+
+    <h2>Login / लॉगिन</h2>
+
+    <input id="user" placeholder="Username / वापरकर्ता नाव">
+    <input id="pass" type="password" placeholder="Password / पासवर्ड">
+
+    <button onclick="login()">Login / लॉगिन</button>
+
+    <div class="login-footer">
+      <small>Admin Access Only</small><br>
+      <small>फक्त प्रशासकासाठी</small>
+    </div>
+
+  </div>
+
 </div>
 
 <script src="app.js"></script>
