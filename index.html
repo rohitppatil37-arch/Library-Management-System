@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कै.विष्णु रामचंद्र खाडे अभ्यासिका</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root {
+  --bg:        #f4f1eb;
+  --bg2:       #ede9e0;
+  --bg3:       #e5e0d5;
+  --surface:   #ffffff;
+  --border:    #c8bfaa;
+  --border2:   #b5a98f;
+  --text:      #2a2118;
+  --text2:     #5c4e38;
+  --text3:     #8a7860;
+  --accent:    #4a7c59;
+  --accent2:   #3a6347;
+  --accentbg:  #eaf2ed;
+  --accentbdr: #9dc5ab;
+  --red:       #c0392b;
+  --redbg:     #fdf0ee;
+  --redbdr:    #e8a49d;
+  --amber:     #b5731a;
+  --amberbg:   #fdf5e8;
+  --shadow:    rgba(42,33,24,0.10);
+  --shadow2:   rgba(42,33,24,0.18);
+  --radius:    12px;
+  --radius-sm: 7px;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── PAGES ─────────────────────────────────────────────────── */
+.page { display:none; min-height:100vh; flex-direction:column; }
+.page.active { display:flex; animation:pgIn .32s ease; }
+@keyframes pgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header {
+  padding:12px 16px;
+  display:flex; align-items:center; gap:12px;
+  background: var(--surface);
+  border-bottom:1.5px solid var(--border);
+  box-shadow: 0 1px 6px var(--shadow);
+  flex-shrink:0; position:sticky; top:0; z-index:10;
+}
+.btn-back {
+  flex-shrink:0; background:var(--bg2);
+  border:1.5px solid var(--border); color:var(--text2);
+  padding:6px 13px; border-radius:var(--radius-sm);
+  cursor:pointer; font-size:0.78rem; font-family:'DM Sans',sans-serif;
+  font-weight:600; transition:all .2s; white-space:nowrap;
+}
+.btn-back:hover { background:var(--bg3); border-color:var(--border2); color:var(--text); }
+.header-icon { font-size:1.9rem; flex-shrink:0; }
+.header-text { flex:1; min-width:0; }
+.header-sub  { font-size:0.62rem; color:var(--text3); font-weight:600; letter-spacing:.4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.header-main { font-family:'Tiro Devanagari Marathi',serif; font-size:clamp(0.88rem,2.8vw,1.15rem); color:var(--text); line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.header-loc  { font-size:0.6rem; color:var(--text3); }
+
+/* ── WELCOME PAGE ───────────────────────────────────────────── */
+#welcome-page { align-items:stretch; justify-content:flex-start; background: var(--bg); }
+.welcome-strip { height:6px; background: linear-gradient(90deg, var(--accent) 0%, #7db892 50%, var(--accent) 100%); }
+
+.splash-container {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px;
+  flex:1; padding:40px 24px; text-align:center;
+}
+.splash-icon { font-size:4rem; animation:floatTree 3s ease-in-out infinite; }
+@keyframes floatTree { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.splash-org  { font-size:.82rem; color:var(--text3); font-weight:600; letter-spacing:.5px; animation:fadeInUp .5s ease .2s both; }
+.splash-name { font-family:'Tiro Devanagari Marathi',serif; font-size:clamp(1.4rem,4.5vw,2.4rem); color:var(--text); line-height:1.2; animation:fadeInUp .5s ease .4s both; }
+.splash-title { font-family:'Tiro Devanagari Marathi',serif; font-size:clamp(1.8rem,5.5vw,3rem); color:var(--accent); line-height:1.15; animation:fadeInUp .5s ease .6s both; }
+.splash-loc { font-size:.8rem; color:var(--text3); letter-spacing:1.2px; animation:fadeInUp .5s ease .8s both; }
+
+@keyframes fadeInUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.splash-fade-out { animation: splashFade .7s ease forwards !important; }
+@keyframes splashFade { to{opacity:0;transform:scale(1.03)} }
+
+.divider { width:48px; height:2.5px; background:var(--accentbdr); border-radius:2px; margin:4px auto; }
+
+.welcome-main {
+  display:none; flex-direction:column; align-items:center;
+  flex:1; gap:14px; padding:36px 20px; animation:fadeInUp .5s ease both;
+}
+.welcome-subtitle { font-size:.85rem; color:var(--text3); text-align:center; font-weight:500; letter-spacing:.2px; }
+
+.btn-main {
+  width:min(340px,92vw); padding:18px 20px;
+  border:1.5px solid var(--border); background: var(--surface); color: var(--text);
+  font-family:'Tiro Devanagari Marathi',serif; font-size:1.1rem;
+  cursor:pointer; border-radius:var(--radius);
+  display:flex; align-items:center; gap:14px;
+  transition:all .25s; box-shadow: 0 2px 8px var(--shadow); text-align:left;
+}
+.btn-main:hover { border-color:var(--accent); background:var(--accentbg); box-shadow: 0 4px 16px var(--shadow2); transform:translateY(-2px); }
+.btn-main-icon { font-size:2rem; flex-shrink:0; }
+.btn-main-text { display:flex; flex-direction:column; gap:3px; }
+.btn-main-title { font-size:1.05rem; color:var(--text); font-weight:700; }
+.btn-main-desc  { font-size:.7rem; color:var(--text3); font-family:'DM Sans',sans-serif; font-weight:500; }
+
+/* ── CONTENT ────────────────────────────────────────────────── */
+.content { flex:1; padding:20px 14px; max-width:860px; margin:0 auto; width:100%; }
+@media(min-width:600px){ .content{ padding:26px 22px; } }
+.page-title { font-family:'Tiro Devanagari Marathi',serif; font-size:1.35rem; color:var(--text); text-align:center; margin-bottom:22px; }
+.page-subtitle { font-size:.82rem; color:var(--text3); text-align:center; margin-top:-16px; margin-bottom:20px; }
+
+/* ── TABS ───────────────────────────────────────────────────── */
+.search-tabs { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+.tab-btn {
+  flex:1; min-width:88px; padding:8px 10px;
+  background:var(--surface); border:1.5px solid var(--border);
+  color:var(--text3); font-family:'DM Sans',sans-serif; font-size:.78rem; font-weight:600;
+  cursor:pointer; border-radius:var(--radius-sm); transition:all .2s; white-space:nowrap; text-align:center;
+}
+.tab-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.tab-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); background:var(--accentbg); }
+
+/* ── SEARCH ─────────────────────────────────────────────────── */
+.search-box-wrap { position:relative; margin-bottom:6px; }
+.search-input {
+  width:100%; padding:12px 44px 12px 14px;
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius-sm); color:var(--text);
+  font-family:'DM Sans',sans-serif; font-size:.9rem;
+  outline:none; transition:border-color .2s;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+.search-input:focus { border-color:var(--accent); }
+.search-input::placeholder { color:var(--text3); }
+.search-icon { position:absolute; right:13px; top:50%; transform:translateY(-50%); font-size:1rem; pointer-events:none; }
+
+.suggestions {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-top:none; border-radius:0 0 var(--radius-sm) var(--radius-sm);
+  max-height:240px; overflow-y:auto; display:none;
+  box-shadow:0 4px 14px var(--shadow);
+}
+.suggestions.show { display:block; }
+.suggestion-item { padding:10px 14px; cursor:pointer; border-bottom:1px solid var(--bg2); font-size:.86rem; transition:background .15s; }
+.suggestion-item:hover { background:var(--accentbg); }
+.suggestion-item:last-child { border-bottom:none; }
+.suggestion-item .s-main { color:var(--text); font-weight:600; }
+.suggestion-item .s-sub  { color:var(--text3); font-size:.72rem; margin-top:1px; }
+
+/* ── BOOK CARD ──────────────────────────────────────────────── */
+.book-card {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius); padding:20px; margin-top:18px;
+  display:none; box-shadow:0 2px 10px var(--shadow);
+}
+.book-card.show { display:block; animation:fadeInUp .32s ease; }
+.book-card-title { font-family:'Tiro Devanagari Marathi',serif; font-size:1.2rem; color:var(--text); margin-bottom:10px; word-break:break-word; line-height:1.3; }
+.book-info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin-bottom:14px; }
+.book-info-item { display:flex; flex-direction:column; gap:2px; min-width:0; }
+.book-info-label { font-size:.66rem; color:var(--text3); text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+.book-info-value { font-size:.88rem; color:var(--text); font-weight:500; word-break:break-word; }
+
+.status-badge { display:inline-flex; align-items:center; gap:5px; padding:4px 12px; border-radius:20px; font-size:.78rem; font-weight:700; margin-bottom:12px; }
+.status-available  { background:var(--accentbg); color:var(--accent);  border:1.5px solid var(--accentbdr); }
+.status-issued     { background:var(--redbg);    color:var(--red);     border:1.5px solid var(--redbdr); }
+.status-unavailable{ background:var(--amberbg);  color:var(--amber);   border:1.5px solid #dfc08a; }
+
+/* ── BUTTONS (loading state) ────────────────────────────────── */
+.btn-request, .btn-submit, .btn-allot, .btn-return-confirm, .btn-find, .btn-send-otp {
+  position: relative; overflow: hidden;
+}
+.btn-request:disabled, .btn-submit:disabled, .btn-allot:disabled,
+.btn-return-confirm:disabled, .btn-find:disabled, .btn-send-otp:disabled {
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Loading shimmer on disabled buttons */
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
+
+.btn-request {
+  width:100%; padding:13px 16px;
+  background:var(--accent); border:none;
+  color:#fff; font-family:'Tiro Devanagari Marathi',serif;
+  font-size:1rem; font-weight:700; cursor:pointer;
+  border-radius:var(--radius-sm); transition:all .2s;
+}
+.btn-request:hover:not(:disabled) { background:var(--accent2); box-shadow:0 4px 14px rgba(74,124,89,.3); }
+
+/* ── POPUP ──────────────────────────────────────────────────── */
+.popup-overlay {
+  position:fixed; inset:0; background:rgba(42,33,24,.45);
+  z-index:200; display:none; align-items:center; justify-content:center; padding:20px;
+  backdrop-filter:blur(2px);
+}
+.popup-overlay.show { display:flex; animation:fadeIn .2s ease; }
+.popup-box {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius); padding:28px 22px;
+  max-width:360px; width:100%; text-align:center;
+  box-shadow:0 8px 32px var(--shadow2); animation:popIn .25s ease;
+}
+@keyframes popIn  { from{transform:scale(.86);opacity:0} to{transform:scale(1);opacity:1} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.popup-icon  { font-size:2.4rem; margin-bottom:8px; }
+.popup-title { font-family:'Tiro Devanagari Marathi',serif; font-size:1.15rem; color:var(--text); margin-bottom:6px; }
+.popup-msg   { color:var(--text2); font-size:.84rem; margin-bottom:18px; line-height:1.6; word-break:break-word; }
+.popup-btn { padding:9px 28px; background:var(--accent); border:none; color:#fff; font-family:'DM Sans',sans-serif; font-weight:700; cursor:pointer; border-radius:var(--radius-sm); font-size:.9rem; transition:all .2s; }
+.popup-btn:hover { background:var(--accent2); }
+
+/* ── ADMIN LOGIN ─────────────────────────────────────────────── */
+.admin-login-wrap { display:flex; flex-direction:column; align-items:center; gap:16px; padding:24px 16px; max-width:340px; margin:0 auto; }
+
+/* ── ADMIN DASHBOARD ─────────────────────────────────────────── */
+.admin-options { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:6px; }
+@media(max-width:460px){ .admin-options{ grid-template-columns:1fr; } }
+.admin-card {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius); padding:20px 14px; text-align:center;
+  cursor:pointer; transition:all .25s;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.admin-card:hover { border-color:var(--accent); background:var(--accentbg); box-shadow:0 4px 16px var(--shadow2); transform:translateY(-3px); }
+.admin-card-icon  { font-size:2.2rem; }
+.admin-card-title { font-family:'Tiro Devanagari Marathi',serif; font-size:.98rem; color:var(--text); }
+.admin-card-desc  { font-size:.7rem; color:var(--text3); line-height:1.4; }
+
+/* ── REQUESTS ───────────────────────────────────────────────── */
+.requests-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+.request-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:14px; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; box-shadow:0 1px 5px var(--shadow); }
+.request-info { flex:1; min-width:0; }
+.request-book { font-size:.9rem; color:var(--text); font-weight:700; word-break:break-word; line-height:1.35; }
+.request-meta { font-size:.74rem; color:var(--text3); margin-top:4px; line-height:1.6; word-break:break-word; }
+.btn-allot { padding:7px 14px; background:var(--accent); border:none; color:#fff; font-family:'DM Sans',sans-serif; font-weight:700; cursor:pointer; border-radius:var(--radius-sm); font-size:.8rem; transition:all .2s; white-space:nowrap; flex-shrink:0; align-self:flex-start; }
+.btn-allot:hover:not(:disabled) { background:var(--accent2); }
+
+/* ── FORMS ──────────────────────────────────────────────────── */
+.add-book-form { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:560px){ .add-book-form{ grid-template-columns:1fr; } }
+.form-group { display:flex; flex-direction:column; gap:5px; }
+.form-group.full { grid-column:1/-1; }
+.form-label { font-size:.74rem; color:var(--text2); font-weight:600; letter-spacing:.2px; }
+.form-input, .form-select {
+  padding:10px 13px; background:var(--surface);
+  border:1.5px solid var(--border); border-radius:var(--radius-sm);
+  color:var(--text); font-family:'DM Sans',sans-serif;
+  font-size:.9rem; outline:none; transition:border-color .2s; width:100%;
+}
+.form-input:focus, .form-select:focus { border-color:var(--accent); }
+.form-input::placeholder { color:var(--text3); }
+.form-select option { background:var(--surface); color:var(--text); }
+.btn-submit {
+  grid-column:1/-1; padding:13px 16px;
+  background:var(--accent); border:none;
+  color:#fff; font-family:'Tiro Devanagari Marathi',serif;
+  font-size:1rem; font-weight:700; cursor:pointer;
+  border-radius:var(--radius-sm); transition:all .2s; margin-top:6px;
+}
+.btn-submit:hover:not(:disabled) { background:var(--accent2); box-shadow:0 4px 14px rgba(74,124,89,.3); }
+
+/* ── RETURN BOOK ────────────────────────────────────────────── */
+.return-search { display:flex; gap:8px; margin-bottom:14px; }
+.return-search .form-input { flex:1; min-width:0; }
+.btn-find { padding:10px 16px; background:var(--accent); border:none; color:#fff; font-family:'DM Sans',sans-serif; font-weight:700; cursor:pointer; border-radius:var(--radius-sm); font-size:.85rem; transition:all .2s; white-space:nowrap; flex-shrink:0; }
+.btn-find:hover:not(:disabled) { background:var(--accent2); }
+.return-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px; display:none; box-shadow:0 2px 8px var(--shadow); }
+.return-card.show { display:block; animation:fadeInUp .3s ease; }
+.return-card-title { font-family:'Tiro Devanagari Marathi',serif; font-size:1.1rem; color:var(--text); margin-bottom:12px; word-break:break-word; }
+.return-info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin-bottom:14px; }
+.rfi { display:flex; flex-direction:column; gap:2px; min-width:0; }
+.rfl { font-size:.66rem; color:var(--text3); text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+.rfv { font-size:.88rem; color:var(--text); font-weight:500; word-break:break-word; }
+.btn-return-confirm { width:100%; padding:13px; background:var(--accent); border:none; color:#fff; font-family:'Tiro Devanagari Marathi',serif; font-size:1rem; font-weight:700; cursor:pointer; border-radius:var(--radius-sm); transition:all .2s; }
+.btn-return-confirm:hover:not(:disabled) { background:var(--accent2); }
+
+/* ── BOOK LIST ──────────────────────────────────────────────── */
+.book-list-search { margin-bottom:14px; }
+.book-list-search .form-input { width:100%; }
+.book-list-item { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:12px 15px; margin-bottom:8px; box-shadow:0 1px 4px var(--shadow); }
+.book-list-name { font-size:.9rem; color:var(--text); font-weight:700; word-break:break-word; line-height:1.35; margin-bottom:4px; }
+.book-list-meta { font-size:.74rem; color:var(--text3); line-height:1.6; word-break:break-word; }
+.book-status-avail  { color:var(--accent);  font-weight:700; }
+.book-status-issued { color:var(--red);     font-weight:700; }
+
+/* ── MISC ───────────────────────────────────────────────────── */
+.empty-msg  { text-align:center; color:var(--text3); padding:40px 20px; font-size:.9rem; }
+.empty-msg span { display:block; font-size:1.8rem; margin-bottom:8px; }
+.loading-msg { text-align:center; color:var(--text3); padding:30px; font-size:.88rem; }
+.info-note { background:var(--accentbg); border:1px solid var(--accentbdr); border-radius:var(--radius-sm); padding:10px 14px; font-size:.8rem; color:var(--accent); margin-bottom:14px; line-height:1.5; }
+
+/* ── OTP ────────────────────────────────────────────────────── */
+.otp-steps { display:flex; flex-direction:column; gap:16px; max-width:360px; margin:0 auto; }
+.otp-step  { display:none; }
+.otp-step.active { display:flex; flex-direction:column; gap:12px; animation:fadeInUp .3s ease; }
+
+.otp-input-group { display:flex; gap:8px; }
+.otp-input-group .form-input { flex:1; min-width:0; }
+.btn-send-otp { padding:10px 16px; background:var(--accent); border:none; color:#fff; font-family:'DM Sans',sans-serif; font-weight:700; font-size:.85rem; cursor:pointer; border-radius:var(--radius-sm); transition:all .2s; white-space:nowrap; flex-shrink:0; }
+.btn-send-otp:hover:not(:disabled) { background:var(--accent2); }
+
+.otp-boxes { display:flex; gap:10px; justify-content:center; }
+.otp-box { width:48px; height:52px; text-align:center; font-size:1.4rem; font-weight:700; border:2px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); color:var(--text); outline:none; transition:border-color .2s; font-family:'DM Sans',sans-serif; }
+.otp-box:focus { border-color:var(--accent); }
+
+/* ── REGISTRATION ───────────────────────────────────────────── */
+.reg-form { display:grid; grid-template-columns:1fr; gap:14px; max-width:400px; margin:0 auto; }
+.enrollment-badge { background:var(--accentbg); border:1.5px solid var(--accentbdr); border-radius:var(--radius); padding:18px; text-align:center; display:none; animation:fadeInUp .3s ease; }
+.enrollment-badge.show { display:block; }
+.enrollment-number { font-family:'Tiro Devanagari Marathi',serif; font-size:2rem; color:var(--accent); font-weight:700; letter-spacing:2px; margin:8px 0; }
+
+/* ── TIMER ──────────────────────────────────────────────────── */
+.otp-timer { font-size:.78rem; color:var(--text3); text-align:center; }
+.otp-timer.urgent { color:var(--red); font-weight:700; }
+
+/* ── SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- WELCOME PAGE -->
+<div id="welcome-page" class="page active">
+  <div class="welcome-strip"></div>
+  <div id="splash" class="splash-container">
+    <div class="splash-icon">🌳</div>
+    <div class="splash-org">स्मृती वनराई परिवार, संचलित</div>
+    <div class="divider"></div>
+    <div class="splash-name">कै.विष्णु रामचंद्र खाडे</div>
+    <div class="splash-title">📚 अभ्यासिका</div>
+    <div class="splash-loc">📍 रामराई, बावची</div>
+  </div>
+  <div id="welcome-main" class="welcome-main">
+    <div class="splash-icon" style="font-size:2.8rem">🌳</div>
+    <div class="splash-name" style="font-size:1.3rem;text-align:center">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+    <div class="welcome-subtitle">स्वागत आहे! पुढे जाण्यासाठी निवडा:</div>
+    <button class="btn-main" onclick="goTo('register-page')">
+      <span class="btn-main-icon">📋</span>
+      <span class="btn-main-text"><span class="btn-main-title">नवीन सभासद नोंदणी</span><span class="btn-main-desc">नवीन सदस्य म्हणून नोंदणी करा</span></span>
+    </button>
+    <button class="btn-main" onclick="goTo('sabhasad-login-page')">
+      <span class="btn-main-icon">📖</span>
+      <span class="btn-main-text"><span class="btn-main-title">सभासद प्रवेश</span><span class="btn-main-desc">पुस्तके शोधा व विनंती करा</span></span>
+    </button>
+    <button class="btn-main" onclick="goTo('admin-login-page')">
+      <span class="btn-main-icon">🔐</span>
+      <span class="btn-main-text"><span class="btn-main-title">प्रशासक लॉगिन</span><span class="btn-main-desc">Admin access</span></span>
+    </button>
+  </div>
+</div>
+
+<!-- REGISTER PAGE -->
+<div id="register-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('welcome-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">✨ सभासद व्हा — आजच!</div>
+    <div class="page-subtitle">नोंदणी करा आणि हजारो पुस्तकांचा आनंद घ्या</div>
+    <div id="reg-form-wrap" class="reg-form">
+      <div class="form-group">
+        <label class="form-label">पूर्ण नाव *</label>
+        <input class="form-input" id="reg-name" type="text" placeholder="उदा. राहुल विष्णू देशमुख">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email ID *</label>
+        <input class="form-input" id="reg-email" type="email" placeholder="उदा. rahul@gmail.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">मोबाईल नंबर *</label>
+        <input class="form-input" id="reg-mobile" type="tel" placeholder="उदा. 9876543210" maxlength="10">
+      </div>
+      <div class="form-group">
+        <label class="form-label">राहण्याचा पत्ता</label>
+        <input class="form-input" id="reg-address" type="text" placeholder="उदा. बावची, ता. शिरूर, जि. पुणे">
+      </div>
+      <button class="btn-submit" id="btn-reg-submit" style="grid-column:1" onclick="submitRegistration(this)">✅ नोंदणी करा</button>
+    </div>
+    <div class="enrollment-badge" id="enrollment-badge">
+      <div style="font-size:1.8rem">🎉</div>
+      <div style="font-family:'Tiro Devanagari Marathi',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px">नोंदणी यशस्वी!</div>
+      <div class="enrollment-number" id="new-enrollment-no">VNR-2025-001</div>
+      <div style="font-size:.85rem;color:var(--text2)" id="new-enrollment-name"></div>
+      <div style="font-size:.78rem;color:var(--text3);margin-top:10px;line-height:1.6">हा enrollment number लक्षात ठेवा. Login साठी email वर OTP येईल.</div>
+      <button class="btn-submit" style="margin-top:14px;width:100%" onclick="goTo('sabhasad-login-page')">📖 आता Login करा</button>
+    </div>
+  </div>
+</div>
+
+<!-- SABHASAD LOGIN PAGE -->
+<div id="sabhasad-login-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('welcome-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">🔑 पुस्तकांच्या दुनियेत प्रवेश करा</div>
+    <div class="page-subtitle">तुमच्या email वर OTP येईल — सोपे आणि सुरक्षित!</div>
+    <div class="otp-steps">
+      <!-- Step 1 -->
+      <div class="otp-step active" id="otp-step1">
+        <div class="form-group">
+          <label class="form-label">नोंदणीकृत Email ID *</label>
+          <div class="otp-input-group">
+            <input class="form-input" id="login-email" type="email" placeholder="उदा. rahul@gmail.com" onkeydown="if(event.key==='Enter')sendOTP(document.getElementById('btn-send-otp'))">
+            <button class="btn-send-otp" id="btn-send-otp" onclick="sendOTP(this)">OTP पाठवा</button>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="otp-step" id="otp-step2">
+        <div class="info-note">📧 तुमच्या email वर 6-अंकी OTP पाठवला आहे. 10 मिनिटांत वापरा.</div>
+        <div class="form-group">
+          <label class="form-label" style="text-align:center;margin-bottom:8px">OTP टाका</label>
+          <div class="otp-boxes">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp0" oninput="otpMove(0)" onkeydown="otpBack(event,0)">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp1" oninput="otpMove(1)" onkeydown="otpBack(event,1)">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp2" oninput="otpMove(2)" onkeydown="otpBack(event,2)">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp3" oninput="otpMove(3)" onkeydown="otpBack(event,3)">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp4" oninput="otpMove(4)" onkeydown="otpBack(event,4)">
+            <input type="text" inputmode="numeric" class="otp-box" maxlength="1" id="otp5" oninput="otpMove(5)" onkeydown="otpBack(event,5)">
+          </div>
+        </div>
+        <div class="otp-timer" id="otp-timer">⏱️ OTP वैध आहे</div>
+        <button class="btn-submit" id="btn-verify-otp" onclick="verifyOTP(this)">✅ OTP पडताळा</button>
+        <div style="text-align:center">
+          <button style="background:none;border:none;color:var(--text3);font-size:.8rem;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="resendOTP()">🔄 OTP पुन्हा पाठवा</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SABHASAD PAGE -->
+<div id="sabhasad-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="sabhasadLogout()">← बाहेर पडा</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div id="member-strip" style="background:var(--accentbg);border-bottom:1px solid var(--accentbdr);padding:8px 16px;font-size:.8rem;color:var(--accent);font-weight:600;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+    <span>👤</span><span id="strip-name">—</span>
+    <span style="color:var(--text3)">|</span>
+    <span id="strip-enr" style="color:var(--text2)">—</span>
+  </div>
+  <div class="content">
+    <div class="page-title">🔍 पुस्तक शोधा</div>
+    <div class="page-subtitle">नाव, लेखक किंवा अ.क्र. वापरून शोधा</div>
+    <div class="search-tabs">
+      <button class="tab-btn active" onclick="setSearchType('sr', this)">अ.क्र. नुसार</button>
+      <button class="tab-btn" onclick="setSearchType('name', this)">पुस्तकाच्या नावानुसार</button>
+      <button class="tab-btn" onclick="setSearchType('author', this)">लेखकाच्या नावानुसार</button>
+    </div>
+    <div class="search-box-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="इथे टाईप करा..." oninput="onSearch()" autocomplete="off">
+      <span class="search-icon">🔍</span>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+    <div class="book-card" id="bookCard">
+      <div class="book-card-title" id="bc-title"></div>
+      <div id="bc-status-badge"></div>
+      <div class="book-info-grid" id="bc-info"></div>
+      <button class="btn-request" id="bc-request-btn" onclick="requestBook(this)">📬 पुस्तकासाठी विनंती करा</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN PAGE -->
+<div id="admin-login-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('welcome-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">🔐 प्रशासक प्रवेश</div>
+    <div class="page-subtitle">फक्त अधिकृत व्यक्तींसाठी</div>
+    <div class="admin-login-wrap">
+      <div style="width:100%;display:flex;flex-direction:column;gap:12px">
+        <div class="form-group">
+          <label class="form-label">User ID</label>
+          <input class="form-input" id="admin-userid" type="text" placeholder="User ID टाका" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div style="position:relative">
+            <input class="form-input" id="admin-password" type="password" placeholder="Password टाका" autocomplete="current-password" onkeydown="if(event.key==='Enter')doAdminLogin(this)">
+            <span onclick="togglePass()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none" id="passEye">👁️</span>
+          </div>
+        </div>
+        <div id="login-error" style="color:var(--red);font-size:.8rem;text-align:center;display:none;background:var(--redbg);padding:8px;border-radius:var(--radius-sm);border:1px solid var(--redbdr)">❌ User ID किंवा Password चुकीचा आहे</div>
+        <button class="btn-submit" id="btn-admin-login" style="margin-top:4px" onclick="doAdminLogin(this)">🔓 लॉगिन करा</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div id="admin-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="adminLogout()">← बाहेर पडा</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची | प्रशासक पॅनेल</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">⚙️ व्यवस्थापन केंद्र</div>
+    <div class="admin-options">
+      <div class="admin-card" onclick="goTo('admin-allot-page')">
+        <div class="admin-card-icon">📬</div>
+        <div class="admin-card-title">पुस्तक वाटप करा</div>
+        <div class="admin-card-desc">सभासदांच्या विनंत्या पाहा व पुस्तके द्या</div>
+      </div>
+      <div class="admin-card" onclick="goTo('admin-return-page')">
+        <div class="admin-card-icon">↩️</div>
+        <div class="admin-card-title">पुस्तक परत नोंद</div>
+        <div class="admin-card-desc">परत आलेली पुस्तके नोंदवा</div>
+      </div>
+      <div class="admin-card" onclick="goTo('admin-addbook-page')">
+        <div class="admin-card-icon">📝</div>
+        <div class="admin-card-title">नवीन पुस्तकाची नोंद</div>
+        <div class="admin-card-desc">अभ्यासिकेत नवीन पुस्तक जोडा</div>
+      </div>
+      <div class="admin-card" onclick="goTo('admin-booklist-page');loadAllBooks()">
+        <div class="admin-card-icon">📚</div>
+        <div class="admin-card-title">सर्व पुस्तके पाहा</div>
+        <div class="admin-card-desc">संपूर्ण पुस्तक यादी</div>
+      </div>
+      <div class="admin-card" onclick="goTo('admin-members-page');loadMembers()">
+        <div class="admin-card-icon">👥</div>
+        <div class="admin-card-title">सभासद यादी</div>
+        <div class="admin-card-desc">नोंदणीकृत सभासद पाहा</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN ALLOT -->
+<div id="admin-allot-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('admin-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">📬 प्रलंबित विनंत्या</div>
+    <div class="requests-list" id="requestsList"></div>
+  </div>
+</div>
+
+<!-- ADMIN ADD BOOK -->
+<div id="admin-addbook-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('admin-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">📚 संग्रहात नवीन पुस्तक जोडा</div>
+    <div class="add-book-form">
+      <div class="form-group"><label class="form-label">अ.क्र. *</label><input class="form-input" id="f-sr" type="number" placeholder="उदा. 101"></div>
+      <div class="form-group"><label class="form-label">पुस्तक क्रमांक</label><input class="form-input" id="f-bookno" type="text" placeholder="उदा. B-101"></div>
+      <div class="form-group full"><label class="form-label">पुस्तकाचे नाव *</label><input class="form-input" id="f-name" type="text" placeholder="उदा. श्यामची आई"></div>
+      <div class="form-group"><label class="form-label">लेखक *</label><input class="form-input" id="f-author" type="text" placeholder="उदा. साने गुरुजी"></div>
+      <div class="form-group"><label class="form-label">किंमत (₹)</label><input class="form-input" id="f-price" type="number" placeholder="उदा. 250"></div>
+      <div class="form-group"><label class="form-label">प्रकाशक</label><input class="form-input" id="f-pub" type="text" placeholder="उदा. मॅजेस्टिक प्रकाशन"></div>
+      <div class="form-group">
+        <label class="form-label">साहित्य प्रकार</label>
+        <select class="form-select" id="f-genre">
+          <option value="">-- निवडा --</option>
+          <option>कादंबरी</option><option>कविता संग्रह</option><option>नाटक</option>
+          <option>चरित्र</option><option>आत्मचरित्र</option><option>इतिहास</option>
+          <option>विज्ञान</option><option>बालसाहित्य</option><option>धार्मिक</option><option>इतर</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">शेरा / विशेष नोंद</label><input class="form-input" id="f-note" type="text" placeholder="उदा. दान केलेले, संदर्भ पुस्तक..."></div>
+      <button class="btn-submit" id="btn-addbook" onclick="submitNewBook(this)">✅ नोंद जतन करा</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN RETURN -->
+<div id="admin-return-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('admin-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">↩️ पुस्तक परत आले!</div>
+    <p style="color:var(--text3);font-size:.86rem;margin-bottom:14px">पुस्तकाचा अ.क्र. टाका आणि परत नोंदवा:</p>
+    <div class="return-search">
+      <input class="form-input" id="ret-sr" placeholder="उदा. 42" type="number">
+      <button class="btn-find" id="btn-ret-find" onclick="findBookForReturn(this)">शोधा</button>
+    </div>
+    <div class="return-card" id="returnCard">
+      <div class="return-card-title" id="ret-bookname"></div>
+      <div class="return-info-grid" id="ret-info"></div>
+      <button class="btn-return-confirm" id="btn-ret-confirm" onclick="confirmReturn(this)">✅ परत नोंदवा</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN BOOK LIST -->
+<div id="admin-booklist-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('admin-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">📖 संपूर्ण पुस्तक संग्रह</div>
+    <div class="book-list-search"><input class="form-input" id="bl-search" placeholder="पुस्तकाचे नाव, लेखक किंवा अ.क्र. टाका..." oninput="filterBookList()"></div>
+    <div id="bookListContainer"><div class="loading-msg">लोड होत आहे...</div></div>
+  </div>
+</div>
+
+<!-- ADMIN MEMBERS -->
+<div id="admin-members-page" class="page">
+  <div class="header">
+    <button class="btn-back" onclick="goTo('admin-page')">← मागे</button>
+    <div class="header-icon">🌳</div>
+    <div class="header-text">
+      <div class="header-sub">स्मृती वनराई परिवार, संचलित</div>
+      <div class="header-main">कै.विष्णु रामचंद्र खाडे अभ्यासिका</div>
+      <div class="header-loc">📍 रामराई, बावची</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="page-title">👥 आपले सभासद परिवार</div>
+    <div class="book-list-search"><input class="form-input" id="mem-search" placeholder="नाव, enrollment number किंवा email शोधा..." oninput="filterMembers()"></div>
+    <div id="membersContainer"><div class="loading-msg">लोड होत आहे...</div></div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <div class="popup-icon" id="popup-icon">ℹ️</div>
+    <div class="popup-title" id="popup-title"></div>
+    <div class="popup-msg" id="popup-msg"></div>
+    <button class="popup-btn" onclick="closePopup()">ठीक आहे</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCRIPT -->
+<!-- ============================================================ -->
+<script>
+// ===== CONFIG — फक्त हे 3 values बदला =====
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← EmailJS वरून घ्या
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // ← EmailJS वरून घ्या
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';  // ← EmailJS वरून घ्या
+
+const SHEET_ID  = '1pU4l-_FvCewYCtnktGJsEmxRjgAOlwnS8hxxmhXUXPg';
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+const API_URL   = 'https://script.google.com/macros/s/AKfycbzYdkU17A8AYqB1sCC9fChgFPU4piKBzb5cVCD_qgFRvc9XAAjLjiQaqqcXQRoUh31d/exec';
+
+const ADMIN_USER = 'rohitppatil37@gmail.com';
+const ADMIN_PASS = 'Rohit@123';
+
+// ===== STATE =====
+let allBooks        = [];
+let searchType      = 'sr';
+let selectedBook    = null;
+let currentOTP      = '';
+let otpEmail        = '';
+let otpExpiry       = 0;
+let otpTimerInterval= null;
+let loggedInMember  = null;
+let allBooksCache   = [];
+let allMembersCache = [];
+
+// ===================================================
+// ✅ UNIVERSAL BUTTON PROTECTION
+// सर्व async calls यातून जातात — double-press impossible
+// ===================================================
+async function withLoading(btn, loadingText, asyncFn) {
+  if (!btn || btn.disabled) return; // आधीच running
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.classList.add('btn-loading');
+  btn.innerHTML = loadingText;
+  try {
+    await asyncFn();
+  } catch(err) {
+    console.error('withLoading error:', err);
+    showPopup('❌', 'Error', 'काहीतरी चूक झाली. पुन्हा प्रयत्न करा.');
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove('btn-loading');
+    btn.innerHTML = originalText;
+  }
+}
+
+// ===== INIT =====
+window.onload = () => {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+  setTimeout(() => {
+    const splash = document.getElementById('splash');
+    splash.classList.add('splash-fade-out');
+    setTimeout(() => {
+      splash.style.display = 'none';
+      const wm = document.getElementById('welcome-main');
+      wm.style.display = 'flex';
+    }, 700);
+  }, 2500);
+  fetchBooks();
+};
+
+// ===== PAGE NAVIGATION =====
+function goTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo(0, 0);
+  if (pageId === 'admin-allot-page')  loadRequests();
+  if (pageId === 'sabhasad-login-page') resetOTPFlow();
+  if (pageId === 'register-page') resetRegForm();
+}
+
+// ===== FETCH BOOKS =====
+async function fetchBooks() {
+  try {
+    const res  = await fetch(SHEET_URL);
+    const text = await res.text();
+    const json = JSON.parse(text.substr(47).slice(0, -2));
+    const rows = json.table.rows;
+    allBooks = rows.map(row => {
+      const c = row.c;
+      return {
+        sr: c[0]?.v?.toString() || '', name: c[1]?.v || '', author: c[2]?.v || '',
+        price: c[3]?.v || '', publisher: c[4]?.v || '', genre: c[5]?.v || '',
+        bookno: c[6]?.v || '', reader: c[7]?.v || '', issueDate: c[8]?.v || '',
+        returnDate: c[9]?.v || '', note: c[10]?.v || ''
+      };
+    }).filter(b => b.name);
+    console.log(`✅ ${allBooks.length} books loaded`);
+  } catch(e) { console.error('Sheet fetch error:', e); }
+}
+
+// ===== API CALL =====
+async function apiCall(params) {
+  const url = API_URL + '?' + new URLSearchParams(params).toString();
+  const r   = await fetch(url);
+  return r.json();
+}
+
+// ===== SEARCH =====
+function setSearchType(type, btn) {
+  searchType = type;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('suggestions').classList.remove('show');
+  document.getElementById('bookCard').classList.remove('show');
+  const ph = { sr:'अ.क्र. टाका उदा. 1', name:'पुस्तकाचे नाव टाका...', author:'लेखकाचे नाव टाका...' };
+  document.getElementById('searchInput').placeholder = ph[type];
+}
+
+function onSearch() {
+  const q   = document.getElementById('searchInput').value.trim().toLowerCase();
+  const sug = document.getElementById('suggestions');
+  document.getElementById('bookCard').classList.remove('show');
+  if (!q) { sug.classList.remove('show'); return; }
+  let results = allBooks.filter(b => {
+    if (searchType === 'sr')     return b.sr.toLowerCase().startsWith(q);
+    if (searchType === 'name')   return b.name.toLowerCase().includes(q);
+    if (searchType === 'author') return b.author.toLowerCase().includes(q);
+    return false;
+  }).slice(0, 8);
+  if (!results.length) {
+    sug.innerHTML = '<div class="suggestion-item"><span class="s-main">कोणतेही पुस्तक सापडले नाही</span></div>';
+    sug.classList.add('show'); return;
+  }
+  sug.innerHTML = results.map(b => `
+    <div class="suggestion-item" onclick="selectBook('${b.sr.replace(/'/g,"\\'")}')">
+      <div class="s-main">${b.name}</div>
+      <div class="s-sub">${b.author} | अ.क्र.: ${b.sr}</div>
+    </div>`).join('');
+  sug.classList.add('show');
+}
+
+function selectBook(sr) {
+  const book = allBooks.find(b => b.sr === sr);
+  if (!book) return;
+  selectedBook = book;
+  document.getElementById('searchInput').value = book.name;
+  document.getElementById('suggestions').classList.remove('show');
+
+  const isAvailable = !book.reader || book.reader.toString().trim() === '';
+  const hasBook     = book.bookno && book.bookno.toString().trim() !== '';
+  let statusHtml, canRequest;
+
+  if (!hasBook) {
+    statusHtml = '<span class="status-badge status-unavailable">⚠️ अभ्यासिकेत उपलब्ध नाही</span>';
+    canRequest = false;
+  } else if (!isAvailable) {
+    statusHtml = `<span class="status-badge status-issued">📤 दिलेले आहे — ${book.reader}</span>`;
+    canRequest = false;
+  } else {
+    statusHtml = '<span class="status-badge status-available">✅ अभ्यासिकेत उपलब्ध</span>';
+    canRequest = true;
+  }
+
+  document.getElementById('bc-title').textContent = book.name;
+  document.getElementById('bc-status-badge').innerHTML = statusHtml;
+  document.getElementById('bc-info').innerHTML = `
+    <div class="book-info-item"><div class="book-info-label">अ.क्र.</div><div class="book-info-value">${book.sr || '—'}</div></div>
+    <div class="book-info-item"><div class="book-info-label">पुस्तक क्रमांक</div><div class="book-info-value">${book.bookno || '—'}</div></div>
+    <div class="book-info-item"><div class="book-info-label">लेखक</div><div class="book-info-value">${book.author || '—'}</div></div>
+    <div class="book-info-item"><div class="book-info-label">प्रकाशक</div><div class="book-info-value">${book.publisher || '—'}</div></div>
+    <div class="book-info-item"><div class="book-info-label">साहित्य प्रकार</div><div class="book-info-value">${book.genre || '—'}</div></div>
+    <div class="book-info-item"><div class="book-info-label">किंमत</div><div class="book-info-value">${book.price ? '₹' + book.price : '—'}</div></div>
+    ${book.issueDate ? `<div class="book-info-item"><div class="book-info-label">दिल्याचा दिनांक</div><div class="book-info-value">${book.issueDate}</div></div>` : ''}
+    ${book.returnDate ? `<div class="book-info-item"><div class="book-info-label">परत करण्याचा दिनांक</div><div class="book-info-value">${book.returnDate}</div></div>` : ''}
+    ${book.note ? `<div class="book-info-item"><div class="book-info-label">शेरा</div><div class="book-info-value">${book.note}</div></div>` : ''}`;
+
+  const btn = document.getElementById('bc-request-btn');
+  btn.disabled = !canRequest;
+  btn.innerHTML = !hasBook ? '🚫 अभ्यासिकेत उपलब्ध नाही'
+    : !canRequest ? '🚫 पुस्तक सध्या उपलब्ध नाही'
+    : '📬 पुस्तकासाठी विनंती करा';
+  document.getElementById('bookCard').classList.add('show');
+}
+
+function requestBook(btn) {
+  if (!selectedBook || !loggedInMember) return;
+  withLoading(btn, '⏳ पाठवत आहे...', async () => {
+    const d = await apiCall({
+      action: 'submitReq',
+      memberName: loggedInMember.name,
+      mobile: loggedInMember.mobile,
+      memberId: loggedInMember.enrollmentNo,
+      bookSR: selectedBook.sr,
+      bookName: selectedBook.name
+    });
+    showPopup(d.success ? '✅' : '❌', d.success ? 'विनंती पाठवली!' : 'चूक', d.message);
+    if (d.success) {
+      selectedBook.reader = loggedInMember.name;
+      selectBook(selectedBook.sr); // refresh card
+    }
+  });
+}
+
+// ===== POPUP =====
+function showPopup(icon, title, msg) {
+  document.getElementById('popup-icon').textContent  = icon;
+  document.getElementById('popup-title').textContent = title;
+  document.getElementById('popup-msg').textContent   = msg;
+  document.getElementById('popup').classList.add('show');
+}
+function closePopup() { document.getElementById('popup').classList.remove('show'); }
+
+// ===================================================
+// OTP FLOW
+// ===================================================
+function resetOTPFlow() {
+  clearInterval(otpTimerInterval);
+  document.getElementById('otp-step1').classList.add('active');
+  document.getElementById('otp-step2').classList.remove('active');
+  const emailEl = document.getElementById('login-email');
+  if (emailEl) emailEl.value = '';
+  for (let i = 0; i < 6; i++) {
+    const b = document.getElementById('otp' + i);
+    if (b) b.value = '';
+  }
+  currentOTP = ''; otpEmail = ''; otpExpiry = 0;
+}
+
+function startOTPTimer() {
+  clearInterval(otpTimerInterval);
+  const timerEl = document.getElementById('otp-timer');
+  otpTimerInterval = setInterval(() => {
+    const remaining = Math.max(0, Math.ceil((otpExpiry - Date.now()) / 1000));
+    const mins = Math.floor(remaining / 60);
+    const secs = remaining % 60;
+    if (remaining <= 0) {
+      clearInterval(otpTimerInterval);
+      timerEl.textContent = '⏰ OTP संपला. पुन्हा पाठवा.';
+      timerEl.classList.add('urgent');
+    } else {
+      timerEl.textContent = `⏱️ OTP वैध: ${mins}:${secs.toString().padStart(2,'0')}`;
+      timerEl.classList.toggle('urgent', remaining <= 60);
+    }
+  }, 1000);
+}
+
+function sendOTP(btn) {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email || !email.includes('@')) { showPopup('⚠️', 'Email हवा', 'कृपया valid email टाका.'); return; }
+
+  withLoading(btn, '⏳ पाठवत आहे...', async () => {
+    const d = await apiCall({ action: 'getMemberByEmail', email });
+    if (!d.success || !d.member) {
+      showPopup('❌', 'सापडले नाही', d.message || 'हा email नोंदणी केलेला नाही. आधी नवीन सभासद नोंदणी करा.');
+      return;
+    }
+
+    otpEmail   = email;
+    currentOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    otpExpiry  = Date.now() + 10 * 60 * 1000;
+
+    // EmailJS ने email पाठवा
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email:     email,
+      to_name:      d.member.name,
+      otp_code:     currentOTP,
+      library_name: 'कै.विष्णु रामचंद्र खाडे अभ्यासिका'
+    });
+
+    sessionStorage.setItem('pending_member', JSON.stringify(d.member));
+
+    document.getElementById('otp-step1').classList.remove('active');
+    document.getElementById('otp-step2').classList.add('active');
+    document.getElementById('otp0').focus();
+    startOTPTimer();
+  });
+}
+
+function otpMove(i) {
+  const v = document.getElementById('otp' + i).value;
+  if (v && i < 5) document.getElementById('otp' + (i + 1)).focus();
+}
+function otpBack(e, i) {
+  if (e.key === 'Backspace' && !document.getElementById('otp' + i).value && i > 0) {
+    document.getElementById('otp' + (i - 1)).focus();
+  }
+}
+
+function verifyOTP(btn) {
+  const entered = [0,1,2,3,4,5].map(i => document.getElementById('otp' + i).value).join('');
+  if (entered.length !== 6) { showPopup('⚠️', 'OTP अपूर्ण', '6 अंकी OTP टाका.'); return; }
+  if (Date.now() > otpExpiry) { showPopup('⏰', 'OTP संपला', 'OTP 10 मिनिटांत संपला. पुन्हा पाठवा.'); return; }
+  if (entered !== currentOTP) { showPopup('❌', 'चुकीचा OTP', 'OTP बरोबर नाही. पुन्हा तपासा.'); return; }
+
+  const member = JSON.parse(sessionStorage.getItem('pending_member') || 'null');
+  if (!member) { showPopup('❌', 'Error', 'Session संपला. पुन्हा प्रयत्न करा.'); return; }
+
+  clearInterval(otpTimerInterval);
+  loggedInMember = member;
+  sessionStorage.removeItem('pending_member');
+
+  document.getElementById('strip-name').textContent = member.name;
+  document.getElementById('strip-enr').textContent  = member.enrollmentNo;
+
+  goTo('sabhasad-page');
+}
+
+function resendOTP() {
+  clearInterval(otpTimerInterval);
+  document.getElementById('otp-step2').classList.remove('active');
+  document.getElementById('otp-step1').classList.add('active');
+  currentOTP = ''; otpExpiry = 0;
+}
+
+function sabhasadLogout() {
+  clearInterval(otpTimerInterval);
+  loggedInMember = null;
+  sessionStorage.removeItem('pending_member');
+  goTo('welcome-page');
+}
+
+// ===================================================
+// REGISTRATION
+// ===================================================
+function resetRegForm() {
+  document.getElementById('reg-form-wrap').style.display = 'grid';
+  document.getElementById('enrollment-badge').classList.remove('show');
+  ['reg-name','reg-email','reg-mobile','reg-address'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+function submitRegistration(btn) {
+  const name    = document.getElementById('reg-name').value.trim();
+  const email   = document.getElementById('reg-email').value.trim();
+  const mobile  = document.getElementById('reg-mobile').value.trim();
+  const address = document.getElementById('reg-address').value.trim();
+
+  if (!name)                        { showPopup('⚠️','नाव हवे','कृपया पूर्ण नाव टाका.'); return; }
+  if (!email || !email.includes('@')){ showPopup('⚠️','Email हवा','कृपया valid email टाका.'); return; }
+  if (!mobile || mobile.length !== 10){ showPopup('⚠️','मोबाईल हवा','10 अंकी मोबाईल नंबर टाका.'); return; }
+
+  withLoading(btn, '⏳ नोंदणी होत आहे...', async () => {
+    const d = await apiCall({ action:'registerMember', name, email, mobile, address });
+    if (d.success) {
+      document.getElementById('reg-form-wrap').style.display = 'none';
+      document.getElementById('new-enrollment-no').textContent   = d.enrollmentNo;
+      document.getElementById('new-enrollment-name').textContent = name + ' | ' + email;
+      document.getElementById('enrollment-badge').classList.add('show');
+    } else {
+      showPopup('❌', 'चूक', d.message);
+    }
+  });
+}
+
+// ===================================================
+// ADMIN LOGIN
+// ===================================================
+function togglePass() {
+  const inp = document.getElementById('admin-password');
+  const eye = document.getElementById('passEye');
+  if (inp.type === 'password') { inp.type = 'text'; eye.textContent = '🙈'; }
+  else { inp.type = 'password'; eye.textContent = '👁️'; }
+}
+
+function doAdminLogin(btn) {
+  const uid  = document.getElementById('admin-userid').value.trim();
+  const pass = document.getElementById('admin-password').value;
+  const err  = document.getElementById('login-error');
+
+  if (uid === ADMIN_USER && pass === ADMIN_PASS) {
+    err.style.display = 'none';
+    localStorage.setItem('admin_logged_in', '1');
+    localStorage.setItem('admin_email', uid);
+    document.getElementById('admin-userid').value   = '';
+    document.getElementById('admin-password').value = '';
+    goTo('admin-page');
+    loadRequests();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('admin-password').value = '';
+    // brief shake effect
+    const box = document.getElementById('login-error');
+    box.style.animation = 'none';
+    setTimeout(() => box.style.animation = '', 10);
+  }
+}
+
+function adminLogout() {
+  localStorage.removeItem('admin_logged_in');
+  localStorage.removeItem('admin_email');
+  goTo('welcome-page');
+}
+
+// ===================================================
+// LOAD REQUESTS
+// ===================================================
+async function loadRequests() {
+  const list = document.getElementById('requestsList');
+  list.innerHTML = '<div class="empty-msg"><span>⏳</span>लोड होत आहे...</div>';
+  try {
+    const d = await apiCall({ action:'getRequests', filter:'pending' });
+    renderRequests(d.requests || []);
+  } catch(e) {
+    list.innerHTML = '<div class="empty-msg"><span>❌</span>Server connect नाही</div>';
+  }
+}
+
+function renderRequests(requests) {
+  const list = document.getElementById('requestsList');
+  if (!requests.length) {
+    list.innerHTML = '<div class="empty-msg"><span>📭</span>कोणत्याही विनंत्या नाहीत</div>'; return;
+  }
+  list.innerHTML = requests.map(r => `
+    <div class="request-card" id="req-${r.reqId}">
+      <div class="request-info">
+        <div class="request-book">📚 ${r.bookName}</div>
+        <div class="request-meta">सभासद: <strong>${r.memberName}</strong>${r.mobile ? ' | 📞 ' + r.mobile : ''} | अ.क्र.: ${r.bookSR} | ${r.time}</div>
+      </div>
+      <button class="btn-allot" id="allot-btn-${r.reqId}" onclick="doAllot(this,'${r.reqId}','${r.bookName}','${r.memberName}')">✅ वाटप करा</button>
+    </div>`).join('');
+}
+
+function doAllot(btn, reqId, bookName, memberName) {
+  const retDate = prompt('परत करण्याची अपेक्षित तारीख? (dd/mm/yyyy — रिकामे चालेल)') || '';
+  withLoading(btn, '⏳...', async () => {
+    const d = await apiCall({ action:'allotBook', reqId, returnDate:retDate, adminEmail:localStorage.getItem('admin_email')||'admin' });
+    if (d.success) {
+      showPopup('✅', 'वाटप झाले!', d.message);
+      // Card remove करा
+      const card = document.getElementById('req-' + reqId);
+      if (card) card.remove();
+      fetchBooks();
+    } else {
+      showPopup('❌', 'चूक', d.message);
+    }
+  });
+}
+
+// ===================================================
+// ADD BOOK
+// ===================================================
+function submitNewBook(btn) {
+  const sr     = document.getElementById('f-sr').value.trim();
+  const name   = document.getElementById('f-name').value.trim();
+  const author = document.getElementById('f-author').value.trim();
+  if (!sr || !name || !author) { showPopup('⚠️','माहिती अपूर्ण','कृपया अ.क्र., पुस्तकाचे नाव आणि लेखक भरा.'); return; }
+
+  withLoading(btn, '⏳ जतन होत आहे...', async () => {
+    const d = await apiCall({
+      action:'addBook', sr, name, author,
+      price:  document.getElementById('f-price').value.trim(),
+      pub:    document.getElementById('f-pub').value.trim(),
+      genre:  document.getElementById('f-genre').value.trim(),
+      bookno: document.getElementById('f-bookno').value.trim(),
+      note:   document.getElementById('f-note').value.trim()
+    });
+    if (d.success) {
+      showPopup('✅', 'नोंदवले!', d.message);
+      ['f-sr','f-bookno','f-name','f-author','f-price','f-pub','f-genre','f-note'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      fetchBooks();
+    } else {
+      showPopup('❌', 'चूक', d.message);
+    }
+  });
+}
+
+// ===================================================
+// RETURN BOOK
+// ===================================================
+let retBook = null;
+
+function findBookForReturn(btn) {
+  const sr = document.getElementById('ret-sr').value.trim();
+  if (!sr) { showPopup('⚠️','अ.क्र. हवा','कृपया अ.क्र. टाका.'); return; }
+
+  withLoading(btn, '⏳ शोधत आहे...', async () => {
+    const d = await apiCall({ action:'getBook', sr });
+    if (!d.success) { showPopup('❌','सापडले नाही', d.message); return; }
+    const b = d.book;
+    if (!b.reader) { showPopup('⚠️','उपलब्ध','हे पुस्तक आधीच अभ्यासिकेत आहे.'); return; }
+    retBook = b;
+    document.getElementById('ret-bookname').textContent = b.name;
+    document.getElementById('ret-info').innerHTML = `
+      <div class="rfi"><div class="rfl">वाचक</div><div class="rfv">${b.reader}</div></div>
+      <div class="rfi"><div class="rfl">दिल्याचा दिनांक</div><div class="rfv">${b.issueDate || '—'}</div></div>
+      <div class="rfi"><div class="rfl">अ.क्र.</div><div class="rfv">${b.sr}</div></div>`;
+    document.getElementById('returnCard').classList.add('show');
+  });
+}
+
+function confirmReturn(btn) {
+  if (!retBook) return;
+  withLoading(btn, '⏳ नोंदवत आहे...', async () => {
+    const d = await apiCall({ action:'returnBook', bookSR:retBook.sr, adminEmail:localStorage.getItem('admin_email')||'admin' });
+    if (d.success) {
+      showPopup('✅', 'परत नोंदवले!', d.message);
+      document.getElementById('returnCard').classList.remove('show');
+      document.getElementById('ret-sr').value = '';
+      retBook = null;
+      fetchBooks();
+    } else {
+      showPopup('❌', 'चूक', d.message);
+    }
+  });
+}
+
+// ===================================================
+// ALL BOOKS LIST
+// ===================================================
+async function loadAllBooks() {
+  const container = document.getElementById('bookListContainer');
+  container.innerHTML = '<div class="loading-msg">⏳ लोड होत आहे...</div>';
+  try {
+    const letters = ['अ','आ','इ','क','ग','च','ज','त','द','न','प','ब','म','र','ल','व','स','ह','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','r','s','t','u','v','w'];
+    let seen = new Set(); allBooksCache = [];
+    for (let q of letters) {
+      const d = await apiCall({ action:'search', q, type:'name' });
+      if (d.books) d.books.forEach(b => { if (!seen.has(b.sr)) { seen.add(b.sr); allBooksCache.push(b); } });
+      if (allBooksCache.length >= 500) break;
+    }
+    for (let i = 1; i <= 20; i++) {
+      const d = await apiCall({ action:'search', q:String(i), type:'sr' });
+      if (d.books) d.books.forEach(b => { if (!seen.has(b.sr)) { seen.add(b.sr); allBooksCache.push(b); } });
+    }
+    allBooksCache.sort((a, b) => Number(a.sr) - Number(b.sr));
+    renderBookList(allBooksCache);
+  } catch(e) {
+    container.innerHTML = '<div class="empty-msg"><span>❌</span>लोड झाले नाही.</div>';
+  }
+}
+
+function filterBookList() {
+  const q = document.getElementById('bl-search').value.trim().toLowerCase();
+  const filtered = q ? allBooksCache.filter(b => b.name.toLowerCase().includes(q) || b.author.toLowerCase().includes(q) || b.sr.toString().includes(q)) : allBooksCache;
+  renderBookList(filtered);
+}
+
+function renderBookList(books) {
+  const container = document.getElementById('bookListContainer');
+  if (!books.length) { container.innerHTML = '<div class="empty-msg"><span>📭</span>पुस्तके सापडली नाहीत</div>'; return; }
+  container.innerHTML = `<p style="color:var(--text3);font-size:.78rem;margin-bottom:10px">एकूण: ${books.length} पुस्तके</p>` +
+    books.map(b => `
+      <div class="book-list-item">
+        <div class="book-list-name">${b.name}</div>
+        <div class="book-list-meta">लेखक: ${b.author || '—'} | अ.क्र.: ${b.sr} | पुस्तक क्र.: ${b.bookno || '—'}<br>
+          ${b.reader ? `<span class="book-status-issued">📤 ${b.reader} यांच्याकडे | ${b.issueDate || '—'}</span>`
+            : b.hasBookNo ? `<span class="book-status-avail">✅ उपलब्ध</span>`
+            : `<span style="color:var(--amber)">⚠️ अभ्यासिकेत नाही</span>`}
+        </div>
+      </div>`).join('');
+}
+
+// ===================================================
+// MEMBERS LIST
+// ===================================================
+async function loadMembers() {
+  const container = document.getElementById('membersContainer');
+  container.innerHTML = '<div class="loading-msg">⏳ लोड होत आहे...</div>';
+  try {
+    const d = await apiCall({ action:'getMembers' });
+    allMembersCache = d.members || [];
+    renderMembers(allMembersCache);
+  } catch(e) {
+    container.innerHTML = '<div class="empty-msg"><span>❌</span>लोड झाले नाही.</div>';
+  }
+}
+
+function filterMembers() {
+  const q = document.getElementById('mem-search').value.trim().toLowerCase();
+  const filtered = q ? allMembersCache.filter(m =>
+    m.name.toLowerCase().includes(q) ||
+    m.enrollmentNo.toLowerCase().includes(q) ||
+    m.email.toLowerCase().includes(q)) : allMembersCache;
+  renderMembers(filtered);
+}
+
+function renderMembers(members) {
+  const container = document.getElementById('membersContainer');
+  if (!members.length) { container.innerHTML = '<div class="empty-msg"><span>👥</span>सभासद सापडले नाहीत</div>'; return; }
+  container.innerHTML = `<p style="color:var(--text3);font-size:.78rem;margin-bottom:10px">एकूण: ${members.length} सभासद</p>` +
+    members.map(m => `
+      <div class="book-list-item">
+        <div class="book-list-name">${m.name} <span style="font-size:.78rem;color:var(--accent);font-weight:600">${m.enrollmentNo}</span></div>
+        <div class="book-list-meta">📧 ${m.email} | 📞 ${m.mobile || '—'} | नोंदणी: ${m.regDate || '—'}</div>
+      </div>`).join('');
+}
+
+// Close suggestions outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-box-wrap')) {
+    document.getElementById('suggestions').classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>
